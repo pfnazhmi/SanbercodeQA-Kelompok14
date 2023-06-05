@@ -74,9 +74,23 @@ class TestUser(unittest.TestCase):
         ).click()  # klik save
         time.sleep(1)
         driver.find_element(
-            By.XPATH,
-            elem.notifSuccess,
-        )  # notif success
+            By.ID,
+            "oxd-toaster_1",
+        )
+        # driver.find_element(
+        #     By.XPATH,
+        #     elem.notifSuccess,
+        # )  # notif success
+        # driver.find_element(
+        #     By.ID,
+        #     "oxd-toaster_1",
+        # )  # notif success
+
+        # response_data = driver.find_element(
+        #     By.ID,
+        #     "oxd-toaster_1",
+        # ).text
+        # self.assertIn("Successfully Updated", response_data)  # notif success
 
     def test_success_edit_user_change_password(self):
         # steps
@@ -138,10 +152,14 @@ class TestUser(unittest.TestCase):
             elem.saveButton,
         ).click()  # klik save
         time.sleep(1)
+        # driver.find_element(
+        #     By.XPATH,
+        #     elem.notifSuccess,
+        # )  # notif success
         driver.find_element(
-            By.XPATH,
-            elem.notifSuccess,
-        )  # notif success
+            By.ID,
+            "oxd-toaster_1",
+        )
 
     def test_failed_edit_user_invalid_username(self):
         # steps
@@ -182,7 +200,7 @@ class TestUser(unittest.TestCase):
         # Menghapus teks yang ada menggunakan kombinasi tombol keyboard
         inputUsername = driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//form[@class='oxd-form']/div[@class='oxd-form-row']/div/div[4]/div/div[2]/input",
+            elem.usernameEdit,
         )
         inputUsername.send_keys(Keys.CONTROL + "a")  # Memilih seluruh teks
         inputUsername.send_keys(Keys.DELETE)  # Menghapus teks yang terpilih
@@ -191,12 +209,12 @@ class TestUser(unittest.TestCase):
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//form[@class='oxd-form']/div[@class='oxd-form-actions']/button[@type='submit']",
+            elem.saveButton,
         ).click()  # klik save
         time.sleep(1)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//form[@class='oxd-form']/div[@class='oxd-form-row']//span[.='Should be at least 5 characters']",
+            elem.errorMessageUsername,
         )  # showing error message
 
     def test_failed_edit_user_confirm_password_not_match(self):
@@ -237,31 +255,31 @@ class TestUser(unittest.TestCase):
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//form[@class='oxd-form']/div[@class='oxd-form-row']/div/div[5]//i",
+            elem.checkboxChangePassword,
         ).click()  # checkbox change password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//form[@class='oxd-form']/div[@class='oxd-form-row user-password-row']/div/div[@class='oxd-grid-item oxd-grid-item--gutters user-password-cell']/div//input[@type='password']",
+            elem.passwordChange,
         ).send_keys(
-            "12345678"
+            dataInput.validPassChange2
         )  # input password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//form[@class='oxd-form']/div[@class='oxd-form-row user-password-row']/div/div[@class='oxd-grid-item oxd-grid-item--gutters']/div//input[@type='password']",
+            elem.confirmPassChange,
         ).send_keys(
-            "87654321"
+            dataInput.invalidConfirmPassChange2
         )  # input confirm password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//form[@class='oxd-form']/div[@class='oxd-form-actions']/button[@type='submit']",
+            elem.saveButton,
         ).click()  # klik save
         time.sleep(1)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//form[@class='oxd-form']/div[@class='oxd-form-row user-password-row']/div/div[@class='oxd-grid-item oxd-grid-item--gutters']/div/span[.='Passwords do not match']",
+            elem.errorMessagePasswordNotMatch,
         )  # showing error message
 
     def test_failed_edit_user_error_message_not_match(self):
@@ -302,32 +320,32 @@ class TestUser(unittest.TestCase):
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//form[@class='oxd-form']/div[@class='oxd-form-row']/div/div[5]//i",
+            elem.checkboxChangePassword,
         ).click()  # checkbox change password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//form[@class='oxd-form']/div[@class='oxd-form-row user-password-row']/div/div[@class='oxd-grid-item oxd-grid-item--gutters user-password-cell']/div//input[@type='password']",
+            elem.passwordChange,
         ).send_keys(
-            "1234567"
+            dataInput.validPassChange3
         )  # input password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//form[@class='oxd-form']/div[@class='oxd-form-row user-password-row']/div/div[@class='oxd-grid-item oxd-grid-item--gutters']/div//input[@type='password']",
+            elem.confirmPassChange,
         ).send_keys(
-            "1234567"
+            dataInput.validPassChange3
         )  # input confirm password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//form[@class='oxd-form']/div[@class='oxd-form-actions']/button[@type='submit']",
+            elem.saveButton,
         ).click()  # klik save
         time.sleep(1)
         expected_text = "Should have at least 8 characters"
         error_message = driver.find_element(
             By.XPATH,
-            "//div[@id='app']//form[@class='oxd-form']/div[@class='oxd-form-row user-password-row']/div/div[@class='oxd-grid-item oxd-grid-item--gutters user-password-cell']/div/span[.='Should have at least 7 characters']",
+            elem.errorMessagePassShouldHave7Char,
         )
         error_message.text == expected_text
         # error_message.is_displayed() and "Should have at least 7 characters" in error_message.text  # showing error message
@@ -365,17 +383,17 @@ class TestUser(unittest.TestCase):
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//div[@role='table']/div[2]/div[3]/div[@role='row']/div[6]/div/button[2]/i",
+            elem.trashIcon,
         ).click()  # delete button / trash icon
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@role='dialog']//div[@role='document']/div[@class='orangehrm-modal-footer']/button[2]",
+            elem.confirmDelete,
         ).click()  # confirmation delete (yes,delete)
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='oxd-toaster_1']/div//p[@class='oxd-text oxd-text--p oxd-text--toast-title oxd-toast-content-text']",
+            elem.notifSuccessDelete,
         )  # notif success
 
     def test_success_delete_list_user(self):
@@ -421,17 +439,17 @@ class TestUser(unittest.TestCase):
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//button[@type='button']",
+            elem.deleteSelectedButton,
         ).click()  # click button delete selected
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@role='dialog']//div[@role='document']/div[@class='orangehrm-modal-footer']/button[2]",
+            elem.confirmDelete,
         ).click()  # confirmation delete (yes,delete)
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='oxd-toaster_1']/div//p[@class='oxd-text oxd-text--p oxd-text--toast-title oxd-toast-content-text']",
+            elem.notifSuccessDelete,
         ).text == "successfully Deleted"  # notif success
 
     def tearDown(self):
