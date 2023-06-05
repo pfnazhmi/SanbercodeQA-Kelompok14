@@ -31,11 +31,8 @@ class TestLogin(unittest.TestCase):
         browser.find_element(By.CLASS_NAME,"oxd-userdropdown").click() # klik tombol profile
         time.sleep(1)
 
-        ul_element = browser.find_element(By.XPATH, "//ul[@class='oxd-dropdown-menu']")
-
-        # Find the <li> element with the specified <a> href attribute and click it
-        li_element = ul_element.find_element(By.XPATH, ".//li/a[@href='https://opensource-demo.orangehrmlive.com/web/index.php/auth/logout']")
-        li_element.click()
+        browser.find_element(By.XPATH,"//*[@href='/web/index.php/auth/logout']").click()
+        time.sleep(1)
 
         # validasi
         wait = WebDriverWait(browser, 10)
