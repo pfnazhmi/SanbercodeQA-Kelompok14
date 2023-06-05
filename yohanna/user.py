@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
+from userLocator import elem
+from userData import dataInput
 
 
 class TestUser(unittest.TestCase):
@@ -12,160 +14,169 @@ class TestUser(unittest.TestCase):
 
     def test_success_edit_user_change_username_user_role(self):
         # steps
-        baseurl = "https://opensource-demo.orangehrmlive.com/"
         driver = self.browser  # buka web browser
-        driver.get(baseurl)  # buka situs
+        driver.get(dataInput.baseurl)  # buka situs
         time.sleep(3)
-        driver.find_element(By.NAME, "username").send_keys("Admin")  # username
+        driver.find_element(By.NAME, elem.username).send_keys(
+            dataInput.validUser
+        )  # username
         time.sleep(1)
-        driver.find_element(By.NAME, "password").send_keys("admin123")  # isi password
+        driver.find_element(By.NAME, elem.password).send_keys(
+            dataInput.validPass
+        )  # isi password
         time.sleep(1)
-        driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
+        driver.find_element(By.CLASS_NAME, elem.loginButton).click()
         time.sleep(5)
         # user
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//aside[@class='oxd-sidepanel']/nav[@role='navigation']//ul[@class='oxd-main-menu']//a[@href='/web/index.php/admin/viewAdminModule']/span[.='Admin']",
+            elem.menuAdmin,
         ).click()
         time.sleep(2)  # menu admin
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul/li[1]/span[@class='oxd-topbar-body-nav-tab-item']",
+            elem.userManagementDropdown,
         ).click()
         time.sleep(2)  # menu user management
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul//ul[@role='menu']/li",
+            elem.usersOption,
         ).click()  # users
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//div[@role='table']/div[2]/div[1]/div[@role='row']/div[6]/div/button[2]/i",
-        ).click()  # edit button / pencil icon
+            elem.editButton,
+        ).click()  # edit toggle
         time.sleep(2)
         # Menghapus teks yang ada menggunakan kombinasi tombol keyboard
         inputUsername = driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//form[@class='oxd-form']/div[@class='oxd-form-row']/div/div[4]/div/div[2]/input",
+            elem.usernameEdit,
         )
         inputUsername.send_keys(Keys.CONTROL + "a")  # Memilih seluruh teks
         inputUsername.send_keys(Keys.DELETE)  # Menghapus teks yang terpilih
         time.sleep(2)
-        inputUsername.send_keys("yohannams")  # input username
+        inputUsername.send_keys(dataInput.validUsername)  # input username
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//form[@class='oxd-form']/div[@class='oxd-form-row']/div/div[1]/div/div[2]/div[@class='oxd-select-wrapper']/div//i",
+            elem.userRole,
         ).click()  # option user role
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//form[@class='oxd-form']/div[@class='oxd-form-row']//div[@role='listbox']/div[3]/span[.='ESS']",
+            elem.userRoleChoose,
         ).click()  # choose user role
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//form[@class='oxd-form']/div[@class='oxd-form-actions']/button[@type='submit']",
+            elem.saveButton,
         ).click()  # klik save
         time.sleep(1)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//form[@class='oxd-form']/div[@class='oxd-form-actions']/button[@type='submit']",
+            elem.notifSuccess,
         )  # notif success
 
     def test_success_edit_user_change_password(self):
         # steps
-        baseurl = "https://opensource-demo.orangehrmlive.com/"
         driver = self.browser  # buka web browser
-        driver.get(baseurl)  # buka situs
+        driver.get(dataInput.baseurl)  # buka situs
         time.sleep(3)
-        driver.find_element(By.NAME, "username").send_keys("Admin")  # username
+        driver.find_element(By.NAME, elem.username).send_keys(
+            dataInput.validUser
+        )  # username
         time.sleep(1)
-        driver.find_element(By.NAME, "password").send_keys("admin123")  # isi password
+        driver.find_element(By.NAME, elem.password).send_keys(
+            dataInput.validPass
+        )  # isi password
         time.sleep(1)
-        driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
+        driver.find_element(By.CLASS_NAME, elem.loginButton).click()
         time.sleep(5)
         # user
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//aside[@class='oxd-sidepanel']/nav[@role='navigation']//ul[@class='oxd-main-menu']//a[@href='/web/index.php/admin/viewAdminModule']/span[.='Admin']",
+            elem.menuAdmin,
         ).click()
         time.sleep(2)  # menu admin
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul/li[1]/span[@class='oxd-topbar-body-nav-tab-item']",
+            elem.userManagementDropdown,
         ).click()
         time.sleep(2)  # menu user management
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul//ul[@role='menu']/li",
+            elem.usersOption,
         ).click()  # users
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//div[@role='table']/div[2]/div[1]/div[@role='row']/div[6]/div/button[2]/i",
+            elem.editButton,
         ).click()  # edit button / pencil icon
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']/div[@class='oxd-layout-container']/div[@class='oxd-layout-context']//form[@class='oxd-form']/div[@class='oxd-form-row']/div/div[5]//i",
+            elem.checkboxChangePassword,
         ).click()  # checkbox change password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//form[@class='oxd-form']/div[@class='oxd-form-row user-password-row']/div/div[@class='oxd-grid-item oxd-grid-item--gutters user-password-cell']/div//input[@type='password']",
+            elem.passwordChange,
         ).send_keys(
-            "a1234567"
+            dataInput.validPassChange
         )  # input password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//form[@class='oxd-form']/div[@class='oxd-form-row user-password-row']/div/div[@class='oxd-grid-item oxd-grid-item--gutters']/div//input[@type='password']",
+            elem.confirmPassChange,
         ).send_keys(
-            "a1234567"
+            dataInput.validConfirmPassChange
         )  # input confirm password
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//form[@class='oxd-form']/div[@class='oxd-form-actions']/button[@type='submit']",
+            elem.saveButton,
         ).click()  # klik save
         time.sleep(1)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//form[@class='oxd-form']/div[@class='oxd-form-actions']/button[@type='submit']",
+            elem.notifSuccess,
         )  # notif success
 
     def test_failed_edit_user_invalid_username(self):
         # steps
-        baseurl = "https://opensource-demo.orangehrmlive.com/"
         driver = self.browser  # buka web browser
-        driver.get(baseurl)  # buka situs
+        driver.get(dataInput.baseurl)  # buka situs
         time.sleep(3)
-        driver.find_element(By.NAME, "username").send_keys("Admin")  # username
+        driver.find_element(By.NAME, elem.username).send_keys(
+            dataInput.validUser
+        )  # username
         time.sleep(1)
-        driver.find_element(By.NAME, "password").send_keys("admin123")  # isi password
+        driver.find_element(By.NAME, elem.password).send_keys(
+            dataInput.validPass
+        )  # isi password
         time.sleep(1)
-        driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
+        driver.find_element(By.CLASS_NAME, elem.loginButton).click()
         time.sleep(5)
         # user
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//aside[@class='oxd-sidepanel']/nav[@role='navigation']//ul[@class='oxd-main-menu']//a[@href='/web/index.php/admin/viewAdminModule']/span[.='Admin']",
+            elem.menuAdmin,
         ).click()
         time.sleep(2)  # menu admin
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul/li[1]/span[@class='oxd-topbar-body-nav-tab-item']",
+            elem.userManagementDropdown,
         ).click()
         time.sleep(2)  # menu user management
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul//ul[@role='menu']/li",
+            elem.usersOption,
         ).click()  # users
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//div[@role='table']/div[2]/div[1]/div[@role='row']/div[6]/div/button[2]/i",
+            elem.editButton,
         ).click()  # edit button / pencil icon
         time.sleep(2)
         # Menghapus teks yang ada menggunakan kombinasi tombol keyboard
@@ -190,35 +201,38 @@ class TestUser(unittest.TestCase):
 
     def test_failed_edit_user_confirm_password_not_match(self):
         # steps
-        baseurl = "https://opensource-demo.orangehrmlive.com/"
         driver = self.browser  # buka web browser
-        driver.get(baseurl)  # buka situs
+        driver.get(dataInput.baseurl)  # buka situs
         time.sleep(3)
-        driver.find_element(By.NAME, "username").send_keys("Admin")  # username
+        driver.find_element(By.NAME, elem.username).send_keys(
+            dataInput.validUser
+        )  # username
         time.sleep(1)
-        driver.find_element(By.NAME, "password").send_keys("admin123")  # isi password
+        driver.find_element(By.NAME, elem.password).send_keys(
+            dataInput.validPass
+        )  # isi password
         time.sleep(1)
-        driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
+        driver.find_element(By.CLASS_NAME, elem.loginButton).click()
         time.sleep(5)
         # user
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//aside[@class='oxd-sidepanel']/nav[@role='navigation']//ul[@class='oxd-main-menu']//a[@href='/web/index.php/admin/viewAdminModule']/span[.='Admin']",
+            elem.menuAdmin,
         ).click()
         time.sleep(2)  # menu admin
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul/li[1]/span[@class='oxd-topbar-body-nav-tab-item']",
+            elem.userManagementDropdown,
         ).click()
         time.sleep(2)  # menu user management
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul//ul[@role='menu']/li",
+            elem.usersOption,
         ).click()  # users
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//div[@role='table']/div[2]/div[1]/div[@role='row']/div[6]/div/button[2]/i",
+            elem.editButton,
         ).click()  # edit button / pencil icon
         time.sleep(2)
         driver.find_element(
@@ -252,35 +266,38 @@ class TestUser(unittest.TestCase):
 
     def test_failed_edit_user_error_message_not_match(self):
         # steps
-        baseurl = "https://opensource-demo.orangehrmlive.com/"
         driver = self.browser  # buka web browser
-        driver.get(baseurl)  # buka situs
+        driver.get(dataInput.baseurl)  # buka situs
         time.sleep(3)
-        driver.find_element(By.NAME, "username").send_keys("Admin")  # username
+        driver.find_element(By.NAME, elem.username).send_keys(
+            dataInput.validUser
+        )  # username
         time.sleep(1)
-        driver.find_element(By.NAME, "password").send_keys("admin123")  # isi password
+        driver.find_element(By.NAME, elem.password).send_keys(
+            dataInput.validPass
+        )  # isi password
         time.sleep(1)
-        driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
+        driver.find_element(By.CLASS_NAME, elem.loginButton).click()
         time.sleep(5)
         # user
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//aside[@class='oxd-sidepanel']/nav[@role='navigation']//ul[@class='oxd-main-menu']//a[@href='/web/index.php/admin/viewAdminModule']/span[.='Admin']",
+            elem.menuAdmin,
         ).click()
         time.sleep(2)  # menu admin
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul/li[1]/span[@class='oxd-topbar-body-nav-tab-item']",
+            elem.userManagementDropdown,
         ).click()
         time.sleep(2)  # menu user management
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul//ul[@role='menu']/li",
+            elem.usersOption,
         ).click()  # users
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//div[@role='table']/div[2]/div[1]/div[@role='row']/div[6]/div/button[2]/i",
+            elem.editButton,
         ).click()  # edit button / pencil icon
         time.sleep(2)
         driver.find_element(
@@ -317,35 +334,38 @@ class TestUser(unittest.TestCase):
 
     def test_success_delete_user(self):
         # steps
-        baseurl = "https://opensource-demo.orangehrmlive.com/"
         driver = self.browser  # buka web browser
-        driver.get(baseurl)  # buka situs
+        driver.get(dataInput.baseurl)  # buka situs
         time.sleep(3)
-        driver.find_element(By.NAME, "username").send_keys("Admin")  # username
+        driver.find_element(By.NAME, elem.username).send_keys(
+            dataInput.validUser
+        )  # username
         time.sleep(1)
-        driver.find_element(By.NAME, "password").send_keys("admin123")  # isi password
+        driver.find_element(By.NAME, elem.password).send_keys(
+            dataInput.validPass
+        )  # isi password
         time.sleep(1)
-        driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
+        driver.find_element(By.CLASS_NAME, elem.loginButton).click()
         time.sleep(5)
         # user
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//aside[@class='oxd-sidepanel']/nav[@role='navigation']//ul[@class='oxd-main-menu']//a[@href='/web/index.php/admin/viewAdminModule']/span[.='Admin']",
+            elem.menuAdmin,
         ).click()
         time.sleep(2)  # menu admin
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul/li[1]/span[@class='oxd-topbar-body-nav-tab-item']",
+            elem.userManagementDropdown,
         ).click()
         time.sleep(2)  # menu user management
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul//ul[@role='menu']/li",
+            elem.usersOption,
         ).click()  # users
         time.sleep(2)
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']/div[@class='oxd-layout']//div[@role='table']/div[2]/div[2]/div[@role='row']/div[6]/div/button[1]/i",
+            "//div[@id='app']/div[@class='oxd-layout']//div[@role='table']/div[2]/div[3]/div[@role='row']/div[6]/div/button[2]/i",
         ).click()  # delete button / trash icon
         time.sleep(2)
         driver.find_element(
@@ -360,30 +380,33 @@ class TestUser(unittest.TestCase):
 
     def test_success_delete_list_user(self):
         # steps
-        baseurl = "https://opensource-demo.orangehrmlive.com/"
         driver = self.browser  # buka web browser
-        driver.get(baseurl)  # buka situs
+        driver.get(dataInput.baseurl)  # buka situs
         time.sleep(3)
-        driver.find_element(By.NAME, "username").send_keys("Admin")  # username
+        driver.find_element(By.NAME, elem.username).send_keys(
+            dataInput.validUser
+        )  # username
         time.sleep(1)
-        driver.find_element(By.NAME, "password").send_keys("admin123")  # isi password
+        driver.find_element(By.NAME, elem.password).send_keys(
+            dataInput.validPass
+        )  # isi password
         time.sleep(1)
-        driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
+        driver.find_element(By.CLASS_NAME, elem.loginButton).click()
         time.sleep(5)
         # user
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//aside[@class='oxd-sidepanel']/nav[@role='navigation']//ul[@class='oxd-main-menu']//a[@href='/web/index.php/admin/viewAdminModule']/span[.='Admin']",
+            elem.menuAdmin,
         ).click()
         time.sleep(2)  # menu admin
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul/li[1]/span[@class='oxd-topbar-body-nav-tab-item']",
+            elem.userManagementDropdown,
         ).click()
         time.sleep(2)  # menu user management
         driver.find_element(
             By.XPATH,
-            "//div[@id='app']//header[@class='oxd-topbar']//nav[@role='navigation']/ul//ul[@role='menu']/li",
+            elem.usersOption,
         ).click()  # users
         time.sleep(2)
         driver.find_element(
