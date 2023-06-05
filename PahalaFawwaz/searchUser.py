@@ -58,5 +58,5 @@ class TestLogin(unittest.TestCase):
     def tearDown(self): 
         self.browser.close() 
 
-if _name_ == "_main_": 
+if __name__ == "_main_": 
     unittest.main()
