@@ -18,3 +18,6 @@
 11.Menu PIM - Add Employee  
 12.Menu PIM - Edit Employee  
 13.Menu PIM - Delete Employee
+
+Test Plan & Test Case:
+https://drive.google.com/drive/folders/1kaAYyqTP-yJ3uXenf-n5XO6Z84k9336q?usp=sharing
