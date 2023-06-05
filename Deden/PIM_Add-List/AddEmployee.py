@@ -35,7 +35,7 @@ class TestPIMAdd(unittest.TestCase):
         driver.find_element(By.NAME, "lastName").send_keys("Ahmad")
         driver.find_element(By.CLASS_NAME, "employee-image").click()
         time.sleep(3)
-        pyautogui.write(r"C:\Users\user\Documents\Final_Project\Deden\foto\Avatar-Profile-PNG-Photos.png")
+        pyautogui.write(r"C:\Users\user\Documents\Final_Project\SanbercodeQA-Kelompok14\Deden\foto\Avatar-Profile-PNG-Photos.png")
         pyautogui.press("enter")
         driver.find_element(By.XPATH, "//button[@type='submit']").click()
     
@@ -117,7 +117,7 @@ class TestPIMAdd(unittest.TestCase):
         driver.find_element(By.NAME, "lastName").send_keys("Ahmad")
         driver.find_element(By.CLASS_NAME, "employee-image").click()
         time.sleep(3)
-        pyautogui.write(r"C:\Users\user\Documents\Final_Project\Deden\foto\Avatar_Profile_Invalid.jpg")
+        pyautogui.write(r"C:\Users\user\Documents\Final_Project\SanbercodeQA-Kelompok14\Deden\foto\Avatar_Profile_Invalid.jpg")
         pyautogui.press("enter")
         driver.find_element(By.XPATH, "//button[@type='submit']").click()
         error_message = driver.find_element(By.XPATH, "//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']").text

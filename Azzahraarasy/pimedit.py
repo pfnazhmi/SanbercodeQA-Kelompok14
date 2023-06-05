@@ -15,13 +15,13 @@ class TestUser(unittest.TestCase):
         driver = self.browser 
         driver.get(baseurl)  
         time.sleep(3)
-        baselogin.test_success_login(driver)
+        # baselogin.test_success_login(driver)
         driver.find_element(By.NAME, "username").send_keys("Admin")  
-        time.sleep(30)
+        time.sleep(5)
         driver.find_element(By.NAME, "password").send_keys("admin123")  
-        time.sleep(30)
+        time.sleep(5)
         driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
-        time.sleep(15)
+        time.sleep(10)
         # PIM 
         driver.find_element(
         By.XPATH, '//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a',
@@ -85,17 +85,17 @@ class TestUser(unittest.TestCase):
         )  # Notif Success
         
         
-    def test_success_login(self): #TestCase2
+    def test_failed_login(self): #TestCase2
         baseurl = "https://opensource-demo.orangehrmlive.com/"
         driver = self.browser 
         driver.get(baseurl)  
         time.sleep(3)
         driver.find_element(By.NAME, "username").send_keys("Admin")  
-        time.sleep(1)
+        time.sleep(5)
         driver.find_element(By.NAME, "password").send_keys("admin123")  
-        time.sleep(1)
+        time.sleep(5)
         driver.find_element(By.CLASS_NAME, "orangehrm-login-button").click()
-        time.sleep(30)
+        time.sleep(10)
         # PIM 
         driver.find_element(
         By.XPATH, '//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a',
