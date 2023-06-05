@@ -76,6 +76,10 @@ class TestOrganization(unittest.TestCase):
         time.sleep(1)
         driver.find_element(By.XPATH, "//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[3]/button[2]").click() #click save
         time.sleep(1)
+        #validasi
+        expectedURL = "https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewLocations"
+        actualURL = driver.current_url
+        self.assertEquals(expectedURL, actualURL)
     
         
     def tearDown(self):

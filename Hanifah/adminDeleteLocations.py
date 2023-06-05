@@ -47,6 +47,11 @@ class TestOrganization(unittest.TestCase):
         time.sleep(1)
         driver.find_element(By.XPATH, "//*[@id='app']/div[3]/div/div/div/div[3]/button[2]").click() #confirmation click yes to delete locations
         time.sleep(1)
+         #validasi
+        expectedURL = "https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewLocations"
+        actualURL = driver.current_url
+        self.assertEquals(expectedURL, actualURL)
+    
 
     def tearDown(self):
         self.browser.close()
