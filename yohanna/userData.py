@@ -1,0 +1,10 @@
+class dataInput:
+    baseurl = "https://opensource-demo.orangehrmlive.com/"
+    validUser = "Admin"
+    validPass = "admin123"
+    validUsername = "aaaaaaa"
+    validPassChange = "a1234567"
+    validConfirmPassChange = "a1234567"
+    validPassChange2 = "12345678"
+    validPassChange3 = "1234567"
+    invalidConfirmPassChange2 = "87654321"
