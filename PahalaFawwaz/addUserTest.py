@@ -60,12 +60,13 @@ class TestAdd(unittest.TestCase):
         browser.find_element(By.XPATH,"//input[@class ='oxd-input oxd-input--active' and @type ='password']").send_keys("Ayang!123") # isi password
         time.sleep(2)
 
-        elementsPass = browser.find_element(By.XPATH,"//input[@class,'oxd-input oxd-input--active' and @type, 'password']")# isi status
+        elementsPass = browser.find_element(By.XPATH,"//input[@class ='oxd-input oxd-input--active' and @type='password']")# isi status
         elementsPass.send_keys("Ayang!123")
         time.sleep(2)
 
+
         browser.find_element(By.XPATH,"//button[@class='oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']").click()# klik button add
-        time.sleep(2)
+        time.sleep(10)
 
     def tearDown(self): 
         self.browser.close() 
