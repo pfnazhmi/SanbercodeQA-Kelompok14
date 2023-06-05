@@ -31,7 +31,7 @@ class TestLogin(unittest.TestCase):
         response_data = browser.current_url
         self.assertEqual(response_data, "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
 
-    def testLoginNulllInput(self): 
+    def testLoginFailedWithNulllInput(self): 
         # steps
         browser = self.browser #buka web browser
         browser.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login") # buka situs
