@@ -1,3 +1,6 @@
+Test Plan & Test Case:
+https://drive.google.com/drive/folders/1kaAYyqTP-yJ3uXenf-n5XO6Z84k9336q?usp=sharing
+
 # SanbercodeQA-Kelompok14
 1. Pahala : 1,2,3 
 2. yohanna: 4,5,6 
@@ -19,5 +22,4 @@
 12.Menu PIM - Edit Employee  
 13.Menu PIM - Delete Employee
 
-Test Plan & Test Case:
-https://drive.google.com/drive/folders/1kaAYyqTP-yJ3uXenf-n5XO6Z84k9336q?usp=sharing
+
